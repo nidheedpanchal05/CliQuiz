@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-container {
+  background-color: whitesmoke;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+.nav-container .logo {
+  height: 2.2rem;
+  width: auto;
+}
+
+.nav-container .navbar .nav-list {
+  list-style-type: none;
+  display: flex;
+}
+
+.navbar .nav-list .nav-list-item {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+.nav-list-item * {
+  line-height: 2.2rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #0033ff;
+}
