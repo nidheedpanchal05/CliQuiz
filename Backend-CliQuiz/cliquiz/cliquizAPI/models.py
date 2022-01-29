@@ -4,6 +4,8 @@ import random
 import string
 import time
 
+from httpx import options
+
 def unique_course_code():
     course_code = "".join(random.sample( "".join(random.choices(string.ascii_uppercase + string.digits, k=4)) + str(time.time())[-2:], k=6))
     return course_code
@@ -13,7 +15,7 @@ class Teacher(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField(max_length=30, unique=True)
     password = models.CharField(max_length=20)
-    t_avtar = models.ImageField(name='teacher_avtar')
+    t_avtar = models.ImageField(upload_to ="Images/" ,name='teacher_avtar')
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -40,11 +42,22 @@ class Student(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField(max_length=30, unique=True)
     password = models.CharField(max_length=20)
-    s_avtar = models.ImageField(name='student_avtar')
+    s_avtar = models.ImageField(upload_to ="Images/", name='student_avtar')
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+class StudentCourse(models.Model):
+    student = ForeignKey(Student, on_delete=models.CASCADE, related_name='student')
+    course = ForeignKey(Course, on_delete=models.CASCADE, related_name='course')
+    status = models.CharField(max_length=10,default='active')
+
+    class Meta:
+        unique_together = ["student", "course"]
+
+    def __str__(self):
+        return self.student.name
 
 class Test(models.Model):
     test_id = models.AutoField(auto_created=True, primary_key=True)

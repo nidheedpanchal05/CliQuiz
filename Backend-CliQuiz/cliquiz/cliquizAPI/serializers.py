@@ -1,7 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from . models import Teacher, Student, Course, TestQuestion, Test
-
+from . models import Teacher, Student, Course, TestQuestion, Test, StudentCourse
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
@@ -28,6 +27,7 @@ class TestQuestionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class CourseTeacherSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer()
 
@@ -35,3 +35,7 @@ class CourseTeacherSerializer(serializers.ModelSerializer):
         model = Course
         fields = ('course_id', 'name', 'description', 'course_code', 'teacher')
 
+class StudentCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentCourse
+        fields = '__all__'

@@ -39,3 +39,33 @@
   cursor: pointer;
   box-shadow: 1px 10px 15px #0033ff66;
 }
+
+.img-container {
+  z-index: -10;
+  position: fixed;
+  top: 50vh;
+  left: 60vw;
+}
+
+.img-illustration {
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+  animation-name: animateHand;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  opacity: 1;
+}
+/*
+@keyframes animateHand {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+*/

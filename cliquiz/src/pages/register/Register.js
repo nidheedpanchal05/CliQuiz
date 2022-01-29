@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useFetch } from '../../hooks/useFetch';
@@ -8,8 +8,9 @@ import { FaUserGraduate, FaArrowAltCircleRight } from 'react-icons/fa';
 import '../register/Register.css';
 
 const Register = () => {
-  const { tLoading, item } = useFetch(URL + 'teacher/');
-  //const { sLoading, student } = useFetch(URL + 'student/');
+  const { item, getItems } = useFetch(URL + 'teacher/');
+  const teacherList = item;
+  const [studentList, setStudentList] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +24,12 @@ const Register = () => {
 
   const [avatar, setAvatar] = useState(defaultAvatar);
 
+  useEffect(() => {
+    const getStudent = axios.get(URL + 'student/').then((res) => {
+      setStudentList(res.data);
+    });
+  }, [role === 'STUDENT']);
+
   const handleImg = (e) => {
     if (e.target.files[0]) {
       setAvatar({
@@ -31,20 +38,19 @@ const Register = () => {
         image: e.target.files[0],
       });
     }
-    console.log(e.target.files[0]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (role === 'TEACHER') {
-      const teacherExists = item.find((teacher) => teacher.email === email);
+      const teacherExists = teacherList.find(
+        (teacher) => teacher.email === email
+      );
       if (teacherExists) {
-        console.log(teacherExists, 'exists');
         alert('Teacher with this email already exists');
       } else if (avatar.src === '') {
         alert('Image not selected');
       } else {
-        console.log(avatar);
         let form_data = new FormData();
         form_data.append('name', name);
         form_data.append('email', email);
@@ -53,7 +59,35 @@ const Register = () => {
         axios
           .post('http://127.0.0.1:8000/teacher/', form_data)
           .then((res) => {
-            console.log(res);
+            if (res.status === 201) {
+              alert('Registration Successful');
+              setName('');
+              setEmail('');
+              setPassword('');
+              setRePassword('');
+              setRole('');
+              setAvatar(defaultAvatar);
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    } else if (role === 'STUDENT') {
+      const studentExists = studentList.find(
+        (student) => student.email === email
+      );
+      if (studentExists) {
+        alert('Student with this email already exists');
+      } else if (avatar.src === '') {
+        alert('Image not selected');
+      } else {
+        let form_data = new FormData();
+        form_data.append('name', name);
+        form_data.append('email', email);
+        form_data.append('password', password);
+        form_data.append('student_avtar', avatar.image);
+        axios
+          .post('http://127.0.0.1:8000/student/', form_data)
+          .then((res) => {
             if (res.status === 201) {
               alert('Registration Successful');
               setName('');

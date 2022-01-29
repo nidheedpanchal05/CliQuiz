@@ -13,9 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from . cliquizAPI import views
+from django.contrib import admin
+from django.urls import path, include
+from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
+
 # from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
@@ -24,6 +31,13 @@ urlpatterns = [
     path('course/', views.CourseList.as_view()),
     path('teacher-course/', views.CourseTeacher.as_view()),
     path('student/', views.StudentList.as_view()),
-    path('course/<int:courseId>/', views.CourseAlter.as_view())
+    path('course/<int:courseId>/', views.CourseAlter.as_view()),
+    path('courses-enrolled/', views.StudentCourseList.as_view()),
+    path('courses-enrolled/<int:courseId>', views.StudentCourseList.as_view()),
+    path('tests/', views.TestList.as_view()),
+    path('tests/<int:test_id>', views.AlterTest.as_view()),
+
+
+#path('')
     # path('auth/', obtain_auth_token),
-    ]
+    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,20 +10,32 @@ const NavbarElements = () => {
   const handleLogout = () => {
     localStorage.clear();
     history.push('/');
-    window.location.reload();
+    const reloadWindow = window.location.reload();
   };
 
-  const LoggedInLinks = [
-    <Link to='/teacher-profile'>Profile</Link>,
-    <Link to='/teacherHome' onClick={handleLogout}>
+  const StudentLoggedLinks = [
+    <Link to='/profile'>Profile</Link>,
+    <Link to='/student' onClick={() => handleLogout()}>
+      Logout
+    </Link>,
+  ];
+
+  const TeacherLoggedLinks = [
+    <Link to='/profile'>Profile</Link>,
+    <Link to='/teacher-home' onClick={() => handleLogout()}>
       Logout
     </Link>,
   ];
 
   const LoggedOutLinks = [
     <Link to='/signup'>Register</Link>,
-    <Link to='/'>Login</Link>,
+    <Link exact to='/'>
+      Login
+    </Link>,
   ];
+
+  const teacherLogged = localStorage.getItem('teacher-login');
+  const studentLogged = localStorage.getItem('student-login');
 
   return (
     <div className='nav-container'>
@@ -35,15 +47,22 @@ const NavbarElements = () => {
             alt='Logo'
             onClick={() => history.push('/')}
           />
-          {localStorage.getItem('login')
-            ? (history.push('/teacherHome'),
-              LoggedInLinks.map((elem, index) => {
-                return (
-                  <li key={index} className='nav-list-item'>
-                    {elem}
-                  </li>
-                );
-              }))
+          {teacherLogged || studentLogged
+            ? teacherLogged
+              ? TeacherLoggedLinks.map((elem, index) => {
+                  return (
+                    <li key={index} className='nav-list-item'>
+                      {elem}
+                    </li>
+                  );
+                })
+              : StudentLoggedLinks.map((elem, index) => {
+                  return (
+                    <li key={index} className='nav-list-item'>
+                      {elem}
+                    </li>
+                  );
+                })
             : LoggedOutLinks.map((elem, index) => {
                 return (
                   <li key={index} className='nav-list-item'>

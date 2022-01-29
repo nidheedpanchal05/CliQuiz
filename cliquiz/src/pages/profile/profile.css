@@ -1,0 +1,62 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.profile-main {
+  font-family: 'Inter', sans-serif;
+  margin: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.profile-main table {
+  box-shadow: 2px 2px 10px whitesmoke;
+  border-radius: 0.4rem;
+}
+
+.profile-main table tbody tr th {
+  background-color: #0033ff;
+  color: whitesmoke;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+.profile-main table tbody tr td {
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+
+.profile-main table tbody tr .field-value input {
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.profile-main .profile-avatar {
+  margin: 0.4rem;
+  caret-color: white;
+  cursor: pointer;
+  padding: 0.4rem;
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+  border-radius: 10rem;
+}
+
+.profile-main .profile-btn {
+  background-color: #ffcc00;
+  cursor: pointer;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border: none;
+  border-radius: 0.2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1rem;
+}

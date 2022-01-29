@@ -1,0 +1,101 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter', sans-serif;
+}
+
+.course-main,
+.modal-main {
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.form {
+  border-bottom: 1px lightgray solid;
+}
+
+.form input {
+  width: 70%;
+  border: none;
+  margin-right: 1rem;
+  outline: none;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: whitesmoke;
+}
+
+.info {
+  margin: 1rem 0rem;
+  color: #4e4e4eff;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.modal-main ul {
+  list-style-type: none;
+  height: 20vh;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.modal-main ul::-webkit-scrollbar {
+  background-color: whitesmoke;
+  width: 0.4rem;
+}
+
+.modal-main ul::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 1rem;
+}
+
+.modal-main ul::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #00000033;
+  color: blue;
+}
+
+.modal-main ul li {
+  margin: 0.4rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.2rem;
+}
+
+.modal-main ul li:hover {
+  background-color: whitesmoke;
+}
+
+.modal-main ul li .trash {
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  float: right;
+  background-color: transparent;
+  border: none;
+  color: #cc0000;
+  cursor: pointer;
+  padding: 0.6rem;
+}
+
+.modal-main ul li .trash:hover {
+  background-color: #cc000025;
+}
+
+@media screen and (max-width: 500px) {
+  .test-main,
+  .modal-main {
+    padding: 0.5rem;
+    padding-top: 0;
+  }
+
+  .info {
+    margin: 0.5rem 0rem;
+  }
+
+  .modal-main ul li {
+    margin: 0rem;
+  }
+  .modal-main ul li .trash {
+    padding: 0.4rem;
+  }
+}

@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.student-header {
+  color: #0033ff;
+  text-align: center;
+}
+
+.join-course {
+  margin: 1rem;
+}
+
+.join-course * {
+  margin: 1rem 0rem;
+}
+
+blockquote {
+  color: gray;
+}
+
+.join-course input {
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn {
+  background-color: #0033ff;
+  color: whitesmoke;
+  margin: 1rem 0rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.6rem 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  outline: none;
+  letter-spacing: 0.1rem;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #0033ff33;
+  color: #0033ff;
+}
+
+.unenrol {
+  color: red;
+  font-size: 0.8rem;
+  cursor: pointer;
+  line-height: 1.6rem;
+  border: 1px red solid;
+  border-radius: 2rem;
+  padding: 0rem 0.4rem;
+  background-color: mistyrose;
+}
+
+@media screen and (max-width: 500px) {
+  .btn {
+    padding: 0.4 0.8rem;
+    font-weight: 600;
+  }
+}

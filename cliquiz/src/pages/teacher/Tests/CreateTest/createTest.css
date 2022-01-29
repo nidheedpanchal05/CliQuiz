@@ -1,0 +1,45 @@
+* {
+  margin: 0rem;
+  padding: 0px;
+  font: 'Inter', sans-sarif;
+}
+
+.create-test {
+  padding: 1rem;
+}
+
+.form-elem {
+  margin: 1rem 0rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+.form-elem * {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+}
+
+.form-elem input[type='datetime-local'] {
+  padding: 0rem;
+  padding-left: 1rem;
+}
+
+.form-elem input::-webkit-calendar-picker-indicator {
+  background-color: #ffcc00;
+  padding: 1rem;
+}
+
+.form-elem .detail-text {
+  height: 5rem;
+  padding: 1rem;
+  background-color: whitesmoke;
+  border: none;
+  resize: none;
+}
+
+.form-elem .detail-text:focus {
+  outline: 1px lightgray solid;
+}
