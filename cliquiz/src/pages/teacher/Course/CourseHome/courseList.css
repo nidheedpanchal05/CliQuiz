@@ -1,7 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .course-parent {
@@ -24,7 +24,7 @@
 
 .single-course .course-title {
   background-color: whitesmoke;
-  padding: 1rem;
+  padding: 0rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,6 +32,7 @@
 
 .title {
   font-size: 1.8rem;
+  line-height: 4rem;
   font-weight: 600;
   text-decoration: none;
   color: #000055;
@@ -50,10 +51,9 @@
   background-color: #e3e3e3;
 }
 
-.course-add:focus,
 .course-code:hover {
-  background-color: #0033ff;
-  color: whitesmoke;
+  filter: opacity(0.8);
+  outline: none;
 }
 
 .course-code,
@@ -61,11 +61,12 @@
   text-decoration: none;
   margin: 1rem 0rem;
   color: #0033ff;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 1.2rem;
   cursor: pointer;
   padding: 0.4rem 1rem;
   background-color: #0033ff20;
-  border: 1px solid #0033ff;
+  border: none;
   border-radius: 0.2rem;
 }
 

@@ -34,8 +34,12 @@ urlpatterns = [
     path('course/<int:courseId>/', views.CourseAlter.as_view()),
     path('courses-enrolled/', views.StudentCourseList.as_view()),
     path('courses-enrolled/<int:courseId>', views.StudentCourseList.as_view()),
-    path('tests/', views.TestList.as_view()),
-    path('tests/<int:test_id>', views.AlterTest.as_view()),
+    path('test-details/', views.TestList.as_view()),
+    path('alter-test/<int:testid>', views.AlterTest.as_view()),
+    path('test-question/', views.RandomQuestionList.as_view()),
+    path('question/', views.TestQuestionList.as_view()),
+    path('answer/', views.AnswerList.as_view()),
+    path('answer/<int:id>', views.AnswerList.as_view()),
 
 
 #path('')

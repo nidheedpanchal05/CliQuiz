@@ -1,0 +1,39 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.toggleprev {
+  all: unset;
+  padding: 0.2rem 1rem;
+  background-color: #cc000022;
+  color: #cc0000;
+}
+
+.preview-wrapper {
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid gray;
+}
+
+.question-wrapper {
+  border: 1px solid lightgray;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+}
+
+.prev-question {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.2rem 0rem;
+}
+
+.prev-choices::marker {
+  margin-left: 1rem;
+}
+
+.option-list {
+  list-style-type: circle;
+  margin-left: 1.2rem;
+}

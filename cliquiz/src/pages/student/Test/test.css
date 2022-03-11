@@ -1,0 +1,30 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font: 'Quicksand', sans-sarif;
+}
+
+.main {
+  margin: 1rem;
+}
+
+.test-form .option-wrapper {
+  list-style-type: none;
+}
+
+.test-form .question-wrapper {
+  border: none;
+  border-bottom: 2px solid whitesmoke;
+  margin: 1rem 0rem;
+  background-color: whitesmoke;
+}
+
+.test-form .question {
+  margin: 1rem 0rem;
+}
+
+.test-form .option-wrapper li {
+  line-height: 2rem 0rem;
+  padding: 0.2rem 0rem;
+  font-size: 1rem;
+}

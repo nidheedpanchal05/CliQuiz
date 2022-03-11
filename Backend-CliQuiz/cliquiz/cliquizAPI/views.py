@@ -4,8 +4,8 @@ import hashlib
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from . models import Teacher, Student, Course, TestQuestion, Test, StudentCourse
-from . serializers import StudentCourseSerializer, TeacherSerializer, StudentSerializer, CourseSerializer, TestSerializer, TestQuestionSerializer, CourseTeacherSerializer
+from . models import Teacher, Student, Course, Answer, TestQuestion, Test, StudentCourse
+from . serializers import AnswerSerializer, QuestionSerializer, RandomQuestionSerializer, StudentCourseSerializer, TeacherSerializer, StudentSerializer, CourseSerializer, TestSerializer, TestQuestionSerializer, CourseTeacherSerializer
 
 # from rest_framework.generics import ListAPIView
 # from rest_framework.filters import OrderingFilter
@@ -107,17 +107,56 @@ class TestList(APIView):
         return Response(serialize.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AlterTest(APIView):
-    def put(self, request, test_id, format=None):
-        test = Test.objects.get(pk = test_id)
+    def get(self,request, testid):
+        test = Test.objects.get(pk=testid)
+        serializedTest = TestSerializer(test)
+        return Response(serializedTest.data)
+ 
+    def put(self, request, testid, format=None):
+        test = Test.objects.get(pk = testid)
         serializer = TestSerializer(test, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, test_id, format=None):
-        test = Test.objects.get(pk =test_id)
+    def delete(self, request, testid, format=None):
+        test = Test.objects.get(pk =testid)
         test.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class TestQuestionList(APIView):
+    def get(self,request):
+        testq = TestQuestion.objects.all()
+        serializedTest = QuestionSerializer(testq, many = True)
+        return Response(serializedTest.data)
+
+    def post(self, request):
+        serialize = QuestionSerializer(data=request.data)
+        if serialize.is_valid():
+            serialize.save()
+            return Response(serialize.data, status=status.HTTP_201_CREATED)
+        return Response(serialize.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AnswerList(APIView):
+    def get(self,request):
+        ans = Answer.objects.all()
+        serializedTest = AnswerSerializer(ans, many = True)
+        return Response(serializedTest.data)
+
+    def post(self, request):
+        serialize = AnswerSerializer(data=request.data)
+        if serialize.is_valid():
+            serialize.save()
+            return Response(serialize.data, status=status.HTTP_201_CREATED)
+        return Response(serialize.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RandomQuestionList(APIView):
+    def get(self, request, format=None, **kwargs):
+        question = Test.objects.all()
+        serializedQues = RandomQuestionSerializer(question, many = True)
+        return Response(serializedQues.data)
 
 ## Incomplete

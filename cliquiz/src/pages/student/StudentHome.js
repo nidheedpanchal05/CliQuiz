@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import StudentCourse from './student-course/StudentCourse';
 import Course from './course/Course';
+import Test from './Test/Test';
 
 function StudentHome() {
   const student = JSON.parse(localStorage.getItem('student-login'));
@@ -34,7 +35,9 @@ function StudentHome() {
         <Route path='/student/course/:id'>
           <Course />
         </Route>
-        <Route path='/'></Route>
+        <Route path='/student/test/:testid'>
+          <Test />
+        </Route>
       </Switch>
     </Router>
   );

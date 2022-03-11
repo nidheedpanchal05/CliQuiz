@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { URL } from '../../../../components/url';
 import React, { useState, useEffect } from 'react';
-import { FaArrowLeft, FaCopy, FaTimes, FaTrash } from 'react-icons/fa';
+import { FaCopy, FaTimes, FaTrash, FaStepBackward } from 'react-icons/fa';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useFetch } from '../../../../hooks/useFetch';
 import './SingleCourse.css';
@@ -16,11 +16,11 @@ function SingleCourse() {
   const [showList, setShowList] = useState(false);
 
   useEffect(() => {
-    const setNewCourse = axios.get(URL + 'course/').then((res) => {
+    axios.get(URL + 'course/').then((res) => {
       setCourse(res.data.find((course) => course.course_id === parseInt(id)));
     });
 
-    const getAllStudents = axios.get(URL + 'courses-enrolled/').then((res) => {
+    axios.get(URL + 'courses-enrolled/').then((res) => {
       setEnroledStudents(res.data);
     });
   }, [showList, email, item]);
@@ -53,7 +53,7 @@ function SingleCourse() {
           course: course.course_id,
           student: newStudent.student_id,
         };
-        const enrolStudent = axios
+        axios
           .post(URL + 'courses-enrolled/', newData)
           .then((res) => alert('Successfully added' + newStudent.name))
           .catch((err) => {
@@ -91,7 +91,7 @@ function SingleCourse() {
     return (
       <div className='modal'>
         <div className='modal-header'>
-          <h1>Students Enroled </h1>
+          <h1>Students Enrolled </h1>
           <button className='closeModal' onClick={() => setShowList(false)}>
             <FaTimes />
           </button>
@@ -136,40 +136,43 @@ function SingleCourse() {
 
   return (
     <div className='course-main'>
-      <button className='btn' onClick={() => history.goBack()}>
-        <FaArrowLeft />
+      <button className='back' onClick={() => history.goBack()}>
+        <FaStepBackward />
       </button>
-      <div className='course-info'>
+      <div className='course-actions'>
+        <Link
+          className='btn'
+          to={`/teacher-home/create-test/${course.course_id}`}
+        >
+          Create Test
+        </Link>
+
+        <button onClick={() => setShowList(true)} className='btn'>
+          Students
+        </button>
+        <Link to={`/teacher-home/tests/${course.course_id}`} className='btn'>
+          Scheduled Tests
+        </Link>
+      </div>
+      <div className='course-details'>
         <h1 className='title'>{course.name}</h1>
-        <div className='courseInfo'>
-          <blockquote className='info'>
-            About Course: {course.description}
-          </blockquote>
 
-          <p style={{ marginRight: '1rem ' }}>
-            Invite Students to enroll via Course Code. Click on the Course Code
-            below to copy
-          </p>
-          <button
-            className='course-code'
-            onClick={() => {
-              navigator.clipboard.writeText(course.course_code);
-            }}
-          >
-            {course.course_code}
-            <FaCopy />
-          </button>
-        </div>
-        <div className='options'>
-          <Link to={`/teacher-home/create-test/${course.course_id}`}>
-            <button className='btn'>Create Test</button>
-          </Link>
+        <blockquote className='info'>
+          About Course: {course.description}
+        </blockquote>
 
-          <button onClick={() => setShowList(true)} className='btn'>
-            Students
-          </button>
-          <button className='btn'>Scheduled Tests</button>
-        </div>
+        <p>
+          Invite Students to enroll via Course Code. Click on the Course Code
+          below to copy
+        </p>
+        <button
+          className='course-code'
+          onClick={() => {
+            navigator.clipboard.writeText(course.course_code);
+          }}
+        >
+          {course.course_code} <FaCopy />
+        </button>
       </div>
     </div>
   );

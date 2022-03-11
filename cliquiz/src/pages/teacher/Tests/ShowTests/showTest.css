@@ -1,0 +1,15 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font: 'Quicksand', sans-sarif;
+}
+
+.test-list {
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.test-list th {
+  border-bottom: 1px solid lightgray;
+  padding: 0.5rem 0rem;
+}

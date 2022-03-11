@@ -1,13 +1,27 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
-.course-main,
 .modal-main {
   padding: 1rem;
-  padding-top: 0;
+}
+
+.course-main {
+  display: grid;
+  grid-template-columns: 12rem auto;
+}
+
+.course-actions,
+.course-details {
+  padding: 0rem 1rem;
+}
+
+.course-actions {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid whitesmoke;
 }
 
 .form {
@@ -19,7 +33,7 @@
   border: none;
   margin-right: 1rem;
   outline: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 1rem;
   background-color: whitesmoke;
 }
@@ -28,7 +42,7 @@
   margin: 1rem 0rem;
   color: #4e4e4eff;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .modal-main ul {
@@ -68,7 +82,7 @@
 
 .modal-main ul li .trash {
   border-radius: 0.2rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   float: right;
   background-color: transparent;
   border: none;
@@ -78,10 +92,13 @@
 }
 
 .modal-main ul li .trash:hover {
-  background-color: #cc000025;
+  background-color: #cc000022;
 }
 
 @media screen and (max-width: 500px) {
+  .course-main {
+    display: flex;
+  }
   .test-main,
   .modal-main {
     padding: 0.5rem;

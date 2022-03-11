@@ -1,6 +1,7 @@
+from pyexpat import model
 from django.db.models import fields
 from rest_framework import serializers
-from . models import Teacher, Student, Course, TestQuestion, Test, StudentCourse
+from . models import Answer, Teacher, Student, Course, TestQuestion, Test, StudentCourse
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
@@ -26,7 +27,15 @@ class TestQuestionSerializer(serializers.ModelSerializer):
         model = TestQuestion
         fields = '__all__'
 
+class AllAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = '__all__'
 
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ['id','answer_text', 'question', 'is_right']
 
 class CourseTeacherSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer()
@@ -39,3 +48,17 @@ class StudentCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentCourse
         fields = '__all__'
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answer = AnswerSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = TestQuestion
+        fields = ['ques_id','question','grade', 'test', 'answer']
+
+class RandomQuestionSerializer(serializers.ModelSerializer):
+    question = QuestionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Test
+        fields = ['testid','title','description', 'duration','max_grade','test_status','question' ]
